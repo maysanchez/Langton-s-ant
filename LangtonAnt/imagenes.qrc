@@ -1,0 +1,27 @@
+<RCC>
+    <qresource prefix="/imagenes">
+        <file>search-1.png</file>
+        <file>speedometer.png</file>
+        <file>CBLA.png</file>
+        <file>cursor.png</file>
+        <file>distort.png</file>
+        <file>idea.png</file>
+        <file>layers.png</file>
+        <file>photo-camera.png</file>
+        <file>screen.png</file>
+        <file>search-2.png</file>
+        <file>tag.png</file>
+        <file>watercolor.png</file>
+        <file>cuadrados.png</file>
+        <file>flechas.png</file>
+        <file>flechas-2.png</file>
+        <file>signos.png</file>
+        <file>rgb.png</file>
+        <file>pixel.png</file>
+        <file>espalda.png</file>
+        <file>flechas-3.png</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>imagen.png</file>
+    </qresource>
+</RCC>
