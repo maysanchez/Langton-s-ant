@@ -24,8 +24,8 @@
 #include <QInputDialog>
 
 
-#define ALTO 1000 //x 1000
-#define ANCHO 1000 //y 1087
+#define ALTO 500 //x 1000
+#define ANCHO 500 //y 1087
 #define GENERACIONES 10000
 //#define RETARDO 1500
 
