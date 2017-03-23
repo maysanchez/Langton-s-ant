@@ -18,7 +18,32 @@ Imagen::Imagen(int x, int y, QColor c)
 
 QImage Imagen::pintaGrid(int fondo)
 {
-    imagen.fill(qRgb(255,255,128));
+
+    if(fondo==1){
+
+  //  qDebug() << "ROSA";
+    for(int w=0; w<alto; w++)
+    {
+        for(int h=0; h<ancho; h++)
+        {
+            imagen.setPixel(w,h,qRgb(255,255,128));
+            vm[w][h]=0;
+        }
+    }
+    }else{
+    // qDebug() << "BLANCO";
+        for(int w=0; w<alto; w++)
+        {
+            for(int h=0; h<ancho; h++)
+            {
+                imagen.setPixel(w,h,qRgb(255,255,255));
+                vm[w][h]=0;
+            }
+        }
+
+
+    }
+
     return imagen;
 }
 

@@ -12,10 +12,10 @@ public:
     explicit Imagen(QWidget *parent = 0);
     Imagen(int x, int y, QColor c);
     QImage pintaGrid(int fondo);
-    QImage repintaGrid(int fondo);
+    //QImage repintaGrid(int fondo,robots);
     QImage getImagen();
     QImage imagen;
-    int vm[1000][1000];//
+    int vm[2000][2000];//
     int alto;
     int ancho;
 
