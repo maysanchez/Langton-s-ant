@@ -24,8 +24,8 @@
 #include <QInputDialog>
 
 
-#define ALTO 500 //x 1000
-#define ANCHO 500 //y 1087
+#define ALTO 1000 //x 1000
+#define ANCHO 1000 //y 1087
 #define GENERACIONES 10000
 //#define RETARDO 1500
 
@@ -56,6 +56,7 @@ SImulador::SImulador(QWidget *parent) :
     lineas=0;
     fondo=1;
     random=0;
+    robots =0;
     r = 255; //Color rosa
     g = 0;
     b = 170;
@@ -77,11 +78,16 @@ SImulador::SImulador(QWidget *parent) :
 
     pm = QPixmap::fromImage(image->pintaGrid(fondo));
     scene->addPixmap(pm);
-    pintaLineas();
+
+
+    pintaLineas(robots);
+
 
     ui->graphicsView->setScene(scene);
-    ui->graphicsView->setHorizontalScrollBarPolicy ( Qt::ScrollBarAlwaysOn );
-    ui->graphicsView->setVerticalScrollBarPolicy ( Qt::ScrollBarAlwaysOn );
+    //ui->graphicsView->setHorizontalScrollBarPolicy ( Qt::ScrollBarAlwaysOn );
+    //ui->graphicsView->setVerticalScrollBarPolicy ( Qt::ScrollBarAlwaysOn );
+
+
 }
 
 
@@ -137,7 +143,7 @@ void SImulador::iniciaAlgoritmo()
 
     pm = QPixmap(QPixmap::fromImage(image->imagen));
     actualizaGrid();
-    pintaLineas();
+    pintaLineas(robots);
 
     ui->generation->setText(QString::number(cg));
 
@@ -255,20 +261,34 @@ void SImulador::pintaCelda(int x, int y, int c[3])
 
 }
 
-void SImulador::pintaLineas()
+
+
+void SImulador::pintaLineas(int robots)
 {
+
+
     if(lineas==0){
         //qDebug() << "con lineas" ;
+    if (robots==1){
 
-    for (int x=0; x<=ALTO; x+=1)
+        for (int x=0; x<ALTO; x+=3)
+            scene->addLine(x,0,x,ALTO, QPen(Qt::black,0.01));
+
+        for (int y=0; y<ANCHO; y+=3)
+            scene->addLine(0,y,ANCHO,y, QPen(Qt::black,0.01));
+
+    }else{
+    for (int x=0; x<ALTO; x+=1)
         scene->addLine(x,0,x,ALTO, QPen(Qt::black,0.01));
 
-    for (int y=0; y<=ANCHO; y+=1)
+    for (int y=0; y<ANCHO; y+=1)
         scene->addLine(0,y,ANCHO,y, QPen(Qt::black,0.01));
+     }
     }
     else{
 
        // qDebug() << "sin lineas" ;
+
 
 
     }
@@ -353,7 +373,7 @@ void SImulador::on_startButton_clicked()
 
      pm = QPixmap(QPixmap::fromImage(image->imagen));
      actualizaGrid();
-     pintaLineas();
+     pintaLineas(robots);
 
      ui->startButton->setEnabled(true);
 }
@@ -570,7 +590,7 @@ void SImulador::mousePressEvent(QMouseEvent *event)
             //  qDebug() << "y " << y;
 
               pintaCelda(x,y,co);
-              pintaLineas();
+              pintaLineas(robots);
 
               /*Guarda hormiga*/
               Hormiga* ant = new Hormiga(x,y,pactual,co);
@@ -680,7 +700,7 @@ void SImulador::on_pushButton_clicked()
          image->imagen.setPixel(ah[p]->getX(),ah[p]->getY(),qRgb(ah[p]->getR(),ah[p]->getG(),ah[p]->getB()));
 
     scene->addPixmap(pm);
-    pintaLineas();
+    pintaLineas(robots);
 
 }
 
@@ -695,7 +715,7 @@ void SImulador::on_actionGrid_triggered()
    // qDebug() << " LINEAS " << lineas;
 
     actualizaGrid();
-    pintaLineas();
+    pintaLineas(robots);
 
 
 }
@@ -713,7 +733,7 @@ void SImulador::on_actionBackground_color_triggered()
 
     pm = QPixmap(QPixmap::fromImage(image->imagen));
     actualizaGrid();
-    pintaLineas();
+    pintaLineas(robots);
 
 
 
@@ -772,10 +792,32 @@ void SImulador::on_actionRandom_inizialitation_triggered()
     }
 
     }
-    pintaLineas();
+    pintaLineas(robots);
 
 
 }
 
 
+
+
+void SImulador::on_radioButton_clicked()
+{
+    robots=0;
+    qDebug() << " biologica "<< robots;
+
+
+    lineas=0;
+    actualizaGrid();
+    pintaLineas(robots);
+}
+
+void SImulador::on_radioButton_2_clicked()
+{
+    robots=1;
+    qDebug() << " robotica "<< robots;
+
+    lineas=0;
+    actualizaGrid();
+    pintaLineas(robots);
+}
 

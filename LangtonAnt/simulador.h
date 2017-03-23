@@ -29,7 +29,7 @@ public:
     void delay(int seg);
     void saveFile();
     void pintaCelda(int x, int y, int c[3]);
-    void pintaLineas();
+    void pintaLineas(int robots);
     void repintaLineas();
     void agregaCasilla(int x, int y);
     void eliminaCasilla(int x, int y);
@@ -72,6 +72,7 @@ public:
      int fondo;
      int random;
      int densidad;
+     int robots;
 
 
      QVector<QVector<int> > CasillasVisitadas;
@@ -83,6 +84,7 @@ public:
      QTime time;
      QThread t;
      QPixmap pm;
+
 
      QGraphicsItemGroup *gridLines;
 
@@ -120,6 +122,12 @@ private slots:
 
      void on_actionBackground_color_triggered();
      void on_actionRandom_inizialitation_triggered();
+     void on_radioButton_clicked();
+
+     void on_radioButton_2_clicked();
+
+     void on_positionBox_activated(int index);
+
 private:
      QString curFile;
 
